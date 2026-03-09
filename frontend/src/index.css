@@ -1,0 +1,1386 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply scroll-smooth;
+  }
+
+  /* Force White Text Class - strictly enforces white text/icons */
+  .text-always-white,
+  .text-always-white * {
+    color: #ffffff !important;
+    fill: #ffffff !important;
+  }
+
+  body {
+    @apply antialiased bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950;
+  }
+
+  /* ============================================
+     BEAUTIFUL PREMIUM LIGHT MODE
+     ============================================ */
+  :root:not(.dark) body {
+    background: linear-gradient(135deg, #f8fafc 0%, #ffffff 50%, #f1f5f9 100%);
+    color: #1e293b;
+  }
+
+  /* Premium Card Shadows for Light Mode */
+  :root:not(.dark) .glass,
+  :root:not(.dark) .glass-strong {
+    background: rgba(255, 255, 255, 0.95) !important;
+    border: 1px solid rgba(226, 232, 240, 0.8) !important;
+    box-shadow:
+      0 1px 3px rgba(0, 0, 0, 0.04),
+      0 4px 6px -2px rgba(0, 0, 0, 0.03),
+      0 12px 24px -4px rgba(0, 0, 0, 0.04) !important;
+  }
+
+  :root:not(.dark) .glass-strong:hover,
+  :root:not(.dark) .card-hover:hover {
+    box-shadow:
+      0 4px 8px rgba(0, 0, 0, 0.04),
+      0 8px 16px -4px rgba(59, 130, 246, 0.08),
+      0 20px 40px -8px rgba(0, 0, 0, 0.08) !important;
+    border-color: rgba(59, 130, 246, 0.2) !important;
+  }
+
+  /* Typography - Clean and Readable */
+  :root:not(.dark) h1,
+  :root:not(.dark) h2,
+  :root:not(.dark) h3,
+  :root:not(.dark) h4,
+  :root:not(.dark) h5,
+  :root:not(.dark) h6 {
+    color: #0f172a !important;
+  }
+
+  :root:not(.dark) p,
+  :root:not(.dark) span:not([class*="text-gradient"]),
+  :root:not(.dark) div:not([class*="bg-gradient"]):not([class*="text-gradient"]),
+  :root:not(.dark) label {
+    color: #334155;
+  }
+
+  /* Beautiful Tables */
+  :root:not(.dark) table {
+    background: white !important;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  }
+
+  :root:not(.dark) th {
+    color: #475569 !important;
+    background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%) !important;
+    font-weight: 600;
+    border-bottom: 2px solid #e2e8f0 !important;
+  }
+
+  :root:not(.dark) td {
+    color: #1e293b !important;
+    background: white !important;
+    border-bottom: 1px solid #f1f5f9 !important;
+  }
+
+  :root:not(.dark) tbody tr:hover {
+    background: linear-gradient(90deg, rgba(59, 130, 246, 0.03) 0%, rgba(139, 92, 246, 0.03) 100%) !important;
+  }
+
+  /* Beautiful Input Fields */
+  :root:not(.dark) input,
+  :root:not(.dark) textarea,
+  :root:not(.dark) select {
+    background: #ffffff !important;
+    color: #1e293b !important;
+    border: 1.5px solid #e2e8f0 !important;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  }
+
+  :root:not(.dark) input:focus,
+  :root:not(.dark) textarea:focus,
+  :root:not(.dark) select:focus {
+    border-color: #3b82f6 !important;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12), 0 1px 2px rgba(0, 0, 0, 0.04) !important;
+  }
+
+  :root:not(.dark) input::placeholder,
+  :root:not(.dark) textarea::placeholder {
+    color: #94a3b8 !important;
+  }
+
+  /* SVG Icons - Proper Colors */
+  :root:not(.dark) svg:not([class*="text-white"]):not([class*="text-green"]):not([class*="text-blue"]):not([class*="text-yellow"]):not([class*="text-red"]):not([class*="text-purple"]):not([class*="text-cyan"]) {
+    color: #64748b;
+  }
+
+  /* Lucide icons inherit properly */
+  :root:not(.dark) .lucide {
+    color: inherit;
+  }
+}
+
+@layer utilities {
+
+  /* Fade In Animation */
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Fade In Up Animation - for table rows */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Slide In Animations */
+  .animate-slide-in-left {
+    animation: slideInLeft 0.5s ease-out;
+  }
+
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .animate-slide-in-right {
+    animation: slideInRight 0.5s ease-out;
+  }
+
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(30px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .animate-slide-out-right {
+    animation: slideOutRight 0.3s ease-in forwards;
+  }
+
+  @keyframes slideOutRight {
+    from {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    to {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+  }
+
+  /* Scale In Animation */
+  .animate-scale-in {
+    animation: scaleIn 0.4s ease-out;
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  /* Pulse Animation */
+  .animate-pulse-slow {
+    animation: pulseSlow 3s ease-in-out infinite;
+  }
+
+  @keyframes pulseSlow {
+
+    0%,
+    100% {
+      opacity: 1;
+    }
+
+    50% {
+      opacity: 0.7;
+    }
+  }
+
+  /* Shimmer Effect */
+  .animate-shimmer {
+    animation: shimmer 2s linear infinite;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    background-size: 200% 100%;
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+
+    100% {
+      background-position: 200% 0;
+    }
+  }
+
+  /* Gradient Animation */
+  .animate-gradient {
+    animation: gradient 8s ease infinite;
+    background-size: 200% 200%;
+  }
+
+  @keyframes gradient {
+
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  /* Float Animation */
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes float {
+
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  /* Enhanced Shadows */
+  .shadow-3xl {
+    box-shadow: 0 35px 60px -15px rgba(0, 0, 0, 0.5);
+  }
+
+  .shadow-glow-blue {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+  }
+
+  .shadow-glow-green {
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+  }
+
+  .shadow-glow-purple {
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+  }
+
+  /* ============================================
+     BEAUTIFUL LIGHT MODE - PROFESSIONAL DESIGN
+     ============================================ */
+
+  /* Glass Effects - Beautiful in both modes */
+  .glass {
+    background: rgba(31, 41, 55, 0.5);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(107, 114, 128, 0.1);
+  }
+
+  :root:not(.dark) .glass {
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(226, 232, 240, 1);
+    box-shadow:
+      0 1px 3px 0 rgba(0, 0, 0, 0.08),
+      0 1px 2px 0 rgba(0, 0, 0, 0.04);
+    color: #1f2937;
+  }
+
+  .glass-strong {
+    background: rgba(17, 24, 39, 0.8);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(107, 114, 128, 0.2);
+  }
+
+  :root:not(.dark) .glass-strong {
+    background: #ffffff;
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(229, 231, 235, 1);
+    box-shadow:
+      0 4px 6px -1px rgba(0, 0, 0, 0.08),
+      0 2px 4px -2px rgba(0, 0, 0, 0.04);
+    color: #1f2937;
+  }
+
+  /* Beautiful Card Hovers in Light Mode */
+  :root:not(.dark) .card-hover:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 20px 25px -5px rgba(0, 0, 0, 0.08),
+      0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    border-color: rgba(59, 130, 246, 0.3);
+  }
+
+  /* Professional Light Mode Text Colors */
+  :root:not(.dark) .text-white {
+    color: #111827 !important;
+  }
+
+  :root:not(.dark) .text-gray-100,
+  :root:not(.dark) .text-gray-200 {
+    color: #374151 !important;
+  }
+
+  :root:not(.dark) .text-gray-300,
+  :root:not(.dark) .text-gray-400 {
+    color: #6b7280 !important;
+  }
+
+  :root:not(.dark) .text-gray-500 {
+    color: #9ca3af !important;
+  }
+
+  :root:not(.dark) .text-gray-600,
+  :root:not(.dark) .text-gray-700 {
+    color: #4b5563 !important;
+  }
+
+  /* Beautiful Light Mode Borders */
+  :root:not(.dark) .border-gray-700,
+  :root:not(.dark) .border-gray-600,
+  :root:not(.dark) .border-gray-800,
+  :root:not(.dark) .border-gray-900 {
+    border-color: #e5e7eb !important;
+  }
+
+  :root:not(.dark) .border-gray-700\/50,
+  :root:not(.dark) .border-gray-600\/50 {
+    border-color: rgba(229, 231, 235, 0.5) !important;
+  }
+
+  /* Professional Light Mode Backgrounds */
+  :root:not(.dark) .bg-gray-800,
+  :root:not(.dark) .bg-gray-900,
+  :root:not(.dark) .bg-gray-950 {
+    background-color: #ffffff !important;
+  }
+
+  :root:not(.dark) .bg-gray-700 {
+    background-color: #f9fafb !important;
+  }
+
+  :root:not(.dark) .bg-gray-800\/50,
+  :root:not(.dark) .bg-gray-800\/80 {
+    background-color: rgba(255, 255, 255, 0.95) !important;
+  }
+
+  /* Beautiful Tables in Light Mode */
+  :root:not(.dark) table {
+    background: white;
+    border-radius: 0.75rem;
+    overflow: hidden;
+  }
+
+  :root:not(.dark) thead {
+    background: #f9fafb;
+  }
+
+  :root:not(.dark) th {
+    color: #374151 !important;
+    font-weight: 600;
+    background: #f9fafb !important;
+    border-bottom: 2px solid #e5e7eb !important;
+  }
+
+  :root:not(.dark) td {
+    color: #1f2937 !important;
+    background: white !important;
+  }
+
+  :root:not(.dark) tbody tr {
+    background: white !important;
+    transition: all 0.2s ease;
+  }
+
+  :root:not(.dark) tbody tr:hover {
+    background: #f9fafb !important;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+  }
+
+  :root:not(.dark) tbody tr:nth-child(even) {
+    background: rgba(249, 250, 251, 0.3) !important;
+  }
+
+  /* Professional Input Styling */
+  :root:not(.dark) input,
+  :root:not(.dark) textarea,
+  :root:not(.dark) select {
+    background: white !important;
+    color: #1f2937 !important;
+    border: 1px solid #d1d5db !important;
+    transition: all 0.2s ease;
+  }
+
+  :root:not(.dark) input:focus,
+  :root:not(.dark) textarea:focus,
+  :root:not(.dark) select:focus {
+    background: white !important;
+    border-color: #3b82f6 !important;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1) !important;
+  }
+
+  :root:not(.dark) input::placeholder,
+  :root:not(.dark) textarea::placeholder {
+    color: #9ca3af !important;
+  }
+
+  /* Beautiful Button Styling in Light Mode */
+  :root:not(.dark) button:not([class*="bg-blue"]):not([class*="bg-green"]):not([class*="bg-red"]):not([class*="bg-gradient"]) {
+    color: #1f2937 !important;
+  }
+
+  /* Ensure gradient buttons keep their colors */
+  :root:not(.dark) button[class*="bg-gradient"] {
+    color: white !important;
+  }
+
+  /* ============================================
+     CHARTS & GRAPHS - LIGHT MODE
+     ============================================ */
+
+  /* Recharts Components */
+  :root:not(.dark) .recharts-wrapper {
+    color: #1f2937;
+  }
+
+  :root:not(.dark) .recharts-cartesian-axis-tick text,
+  :root:not(.dark) .recharts-text,
+  :root:not(.dark) .recharts-label {
+    fill: #374151 !important;
+  }
+
+  :root:not(.dark) .recharts-legend-item-text {
+    color: #1f2937 !important;
+  }
+
+  :root:not(.dark) .recharts-tooltip-wrapper {
+    color: #1f2937 !important;
+  }
+
+  :root:not(.dark) .recharts-default-tooltip {
+    background: white !important;
+    border: 1px solid #e5e7eb !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+  }
+
+  :root:not(.dark) .recharts-tooltip-label {
+    color: #111827 !important;
+  }
+
+  :root:not(.dark) .recharts-tooltip-item {
+    color: #1f2937 !important;
+  }
+
+  /* Chart grid lines */
+  :root:not(.dark) .recharts-cartesian-grid line {
+    stroke: #e5e7eb !important;
+  }
+
+  /* Chart axes */
+  :root:not(.dark) .recharts-cartesian-axis line {
+    stroke: #d1d5db !important;
+  }
+
+  /* ============================================
+     SVG & ICONS - LIGHT MODE
+     ============================================ */
+
+  /* SVG icons and symbols */
+  :root:not(.dark) svg:not([class*="text-"]):not([class*="from-"]) {
+    color: #374151;
+  }
+
+  :root:not(.dark) .lucide {
+    color: inherit;
+  }
+
+  /* Pie chart labels */
+  :root:not(.dark) .recharts-pie-label-text {
+    fill: #111827 !important;
+    font-weight: 600;
+  }
+
+  /* Bar and area fills remain colorful */
+  :root:not(.dark) .recharts-bar,
+  :root:not(.dark) .recharts-area,
+  :root:not(.dark) .recharts-line {
+    opacity: 1;
+  }
+
+  /* ============================================
+     HOVER TEXT & TOOLTIPS - LIGHT MODE
+     ============================================ */
+
+  /* All tooltip elements */
+  :root:not(.dark) [role="tooltip"],
+  :root:not(.dark) .tooltip,
+  :root:not(.dark) [data-tooltip] {
+    background: white !important;
+    color: #1f2937 !important;
+    border: 1px solid #e5e7eb !important;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1) !important;
+  }
+
+  /* Hover states */
+  :root:not(.dark) *:hover>.tooltip-text,
+  :root:not(.dark) *:hover>[role="tooltip"] {
+    background: white !important;
+    color: #1f2937 !important;
+  }
+
+  /* ============================================
+     MODALS & POPUPS - LIGHT MODE
+     ============================================ */
+
+  :root:not(.dark) [role="dialog"],
+  :root:not(.dark) .modal,
+  :root:not(.dark) .popup {
+    background: white !important;
+    color: #1f2937 !important;
+    border: 1px solid #e5e7eb !important;
+  }
+
+  :root:not(.dark) .modal-header,
+  :root:not(.dark) .modal-title {
+    color: #111827 !important;
+  }
+
+  :root:not(.dark) .modal-body {
+    color: #1f2937 !important;
+  }
+
+  /* ============================================
+     BADGES & LABELS - LIGHT MODE
+     ============================================ */
+
+  :root:not(.dark) .badge,
+  :root:not(.dark) .label,
+  :root:not(.dark) .tag {
+    border-color: #e5e7eb !important;
+  }
+
+  /* Status badges - keep their background colors but adjust text */
+  :root:not(.dark) .badge:not([class*="bg-"]) {
+    background: #f3f4f6 !important;
+    color: #1f2937 !important;
+  }
+
+  /* ============================================
+     IMAGES & MEDIA - LIGHT MODE  
+     ============================================ */
+
+  :root:not(.dark) img {
+    opacity: 1;
+  }
+
+  :root:not(.dark) .image-container,
+  :root:not(.dark) .media-container {
+    background: white;
+  }
+
+  /* ============================================
+     CARD & BUTTON EFFECTS
+     ============================================ */
+
+  /* Card Hover Effects - Light Mode Friendly */
+  .card-hover {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.3);
+  }
+
+  :root:not(.dark) .card-hover:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 10px 25px -5px rgba(0, 0, 0, 0.08),
+      0 8px 16px -6px rgba(59, 130, 246, 0.1);
+    border-color: rgba(59, 130, 246, 0.25) !important;
+  }
+
+  /* Button Hover Effects */
+  .btn-hover {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .btn-hover::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+  }
+
+  .btn-hover:hover::before {
+    width: 300px;
+    height: 300px;
+  }
+
+  /* Text Gradient */
+  .text-gradient {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-blue {
+    background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-green {
+    background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Loading Skeleton */
+  .skeleton {
+    background: linear-gradient(90deg, #1f2937 25%, #374151 50%, #1f2937 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s ease-in-out infinite;
+  }
+
+  @keyframes loading {
+    0% {
+      background-position: 200% 0;
+    }
+
+    100% {
+      background-position: -200% 0;
+    }
+  }
+
+  /* Light Mode Skeleton */
+  :root:not(.dark) .skeleton {
+    background: linear-gradient(90deg, #e5e7eb 25%, #f3f4f6 50%, #e5e7eb 75%);
+    background-size: 200% 100%;
+  }
+
+  /* Stagger Animation Delays */
+  .stagger-1 {
+    animation-delay: 0.1s;
+  }
+
+  .stagger-2 {
+    animation-delay: 0.2s;
+  }
+
+  .stagger-3 {
+    animation-delay: 0.3s;
+  }
+
+  .stagger-4 {
+    animation-delay: 0.4s;
+  }
+
+  .stagger-5 {
+    animation-delay: 0.5s;
+  }
+
+  .stagger-6 {
+    animation-delay: 0.6s;
+  }
+
+  /* ============================================
+     LOGIN PAGE HOLOGRAPHIC GUARDIAN ANIMATIONS
+     ============================================ */
+
+  /* Slow rotation for outer rings */
+  .animate-spin-slow {
+    animation: spinSlow 20s linear infinite;
+  }
+
+  @keyframes spinSlow {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  /* Scanning line effect for holographic guardian */
+  .animate-scan {
+    animation: scan 4s ease-in-out infinite;
+  }
+
+  @keyframes scan {
+
+    0%,
+    100% {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+
+    10% {
+      opacity: 0.3;
+    }
+
+    50% {
+      transform: translateY(100%);
+      opacity: 0.5;
+    }
+
+    90% {
+      opacity: 0.3;
+    }
+  }
+
+  /* Grid movement for background */
+  @keyframes gridMove {
+    0% {
+      background-position: 0 0;
+    }
+
+    100% {
+      background-position: 50px 50px;
+    }
+  }
+
+  /* Enhanced floating particle animation */
+  @keyframes float {
+
+    0%,
+    100% {
+      transform: translateY(0px) translateX(0px);
+      opacity: 0.4;
+    }
+
+    25% {
+      transform: translateY(-20px) translateX(10px);
+      opacity: 0.7;
+    }
+
+    50% {
+      transform: translateY(-30px) translateX(-10px);
+      opacity: 1;
+    }
+
+    75% {
+      transform: translateY(-20px) translateX(10px);
+      opacity: 0.7;
+    }
+  }
+
+  /* ============================================
+     LIQUID METAL SPHERE ANIMATIONS
+     ============================================ */
+
+  /* Liquid Flow Animations - 8 different directions */
+  @keyframes liquidFlow0 {
+
+    0%,
+    100% {
+      transform: translateY(0%) translateX(0%);
+      opacity: 0.3;
+    }
+
+    50% {
+      transform: translateY(-15%) translateX(10%);
+      opacity: 0.6;
+    }
+  }
+
+  @keyframes liquidFlow1 {
+
+    0%,
+    100% {
+      transform: translateY(0%) translateX(0%) rotate(45deg);
+      opacity: 0.3;
+    }
+
+    50% {
+      transform: translateY(-10%) translateX(15%);
+      opacity: 0.6;
+    }
+  }
+
+  @keyframes liquidFlow2 {
+
+    0%,
+    100% {
+      transform: translateX(0%);
+      opacity: 0.3;
+    }
+
+    50% {
+      transform: translateX(20%);
+      opacity: 0.6;
+    }
+  }
+
+  @keyframes liquidFlow3 {
+
+    0%,
+    100% {
+      transform: translateY(0%) translateX(0%) rotate(135deg);
+      opacity: 0.3;
+    }
+
+    50% {
+      transform: translateY(10%) translateX(15%);
+      opacity: 0.6;
+    }
+  }
+
+  @keyframes liquidFlow4 {
+
+    0%,
+    100% {
+      transform: translateY(0%);
+      opacity: 0.3;
+    }
+
+    50% {
+      transform: translateY(20%);
+      opacity: 0.6;
+    }
+  }
+
+  @keyframes liquidFlow5 {
+
+    0%,
+    100% {
+      transform: translateY(0%) translateX(0%) rotate(225deg);
+      opacity: 0.3;
+    }
+
+    50% {
+      transform: translateY(10%) translateX(-15%);
+      opacity: 0.6;
+    }
+  }
+
+  @keyframes liquidFlow6 {
+
+    0%,
+    100% {
+      transform: translateX(0%);
+      opacity: 0.3;
+    }
+
+    50% {
+      transform: translateX(-20%);
+      opacity: 0.6;
+    }
+  }
+
+  @keyframes liquidFlow7 {
+
+    0%,
+    100% {
+      transform: translateY(0%) translateX(0%) rotate(315deg);
+      opacity: 0.3;
+    }
+
+    50% {
+      transform: translateY(-10%) translateX(-15%);
+      opacity: 0.6;
+    }
+  }
+
+  /* Morphing patterns for idle state */
+  @keyframes morph0 {
+
+    0%,
+    100% {
+      border-radius: 50%;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    33% {
+      border-radius: 40% 60% 60% 40% / 60% 40% 60% 40%;
+      transform: translate(-50%, -50%) scale(1.05);
+    }
+
+    66% {
+      border-radius: 60% 40% 40% 60% / 40% 60% 40% 60%;
+      transform: translate(-50%, -50%) scale(0.95);
+    }
+  }
+
+  @keyframes morph1 {
+
+    0%,
+    100% {
+      border-radius: 50%;
+      transform: translate(-50%, -50%) scale(1) rotate(0deg);
+    }
+
+    33% {
+      border-radius: 45% 55% 50% 50% / 50% 45% 55% 50%;
+      transform: translate(-50%, -50%) scale(1.02) rotate(120deg);
+    }
+
+    66% {
+      border-radius: 55% 45% 50% 50% / 50% 55% 45% 50%;
+      transform: translate(-50%, -50%) scale(0.98) rotate(240deg);
+    }
+  }
+
+  @keyframes morph2 {
+
+    0%,
+    100% {
+      border-radius: 50%;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    50% {
+      border-radius: 42% 58% 45% 55% / 55% 48% 52% 45%;
+      transform: translate(-50%, -50%) scale(1.03);
+    }
+  }
+
+  /* Dripping effect for liquid metal droplets */
+  @keyframes drip {
+    0% {
+      transform: translateY(0) scaleY(1);
+      opacity: 1;
+    }
+
+    50% {
+      transform: translateY(20px) scaleY(1.2);
+      opacity: 0.7;
+    }
+
+    100% {
+      transform: translateY(40px) scaleY(0.8);
+      opacity: 0;
+    }
+  }
+
+  /* 3D perspective helper */
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+
+  /* Radial gradient utility */
+  .bg-gradient-radial {
+    background: radial-gradient(circle, var(--tw-gradient-stops));
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #111827;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #4b5563, #374151);
+  border-radius: 10px;
+  border: 2px solid #111827;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #6b7280, #4b5563);
+}
+
+/* Light Mode Scrollbar */
+:root:not(.dark) ::-webkit-scrollbar-track {
+  background: #f3f4f6;
+}
+
+:root:not(.dark) ::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #9ca3af, #d1d5db);
+  border: 2px solid #f3f4f6;
+}
+
+:root:not(.dark) ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #6b7280, #9ca3af);
+}
+
+
+/* Selection */
+::selection {
+  background: rgba(59, 130, 246, 0.3);
+  color: #fff;
+}
+
+/* Focus Styles */
+:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Enhanced Dropdown Styles */
+.dropdown {
+  background: rgba(31, 41, 55, 0.8);
+  backdrop-filter: blur(8px);
+  border: 2px solid rgba(107, 114, 128, 0.5);
+  border-radius: 0.75rem;
+  padding: 0.625rem 2.5rem 0.625rem 1rem;
+  color: white;
+  font-weight: 500;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23ffffff'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1.25em 1.25em;
+}
+
+/* Light Mode Dropdown */
+:root:not(.dark) .dropdown {
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid rgba(203, 213, 225, 0.8);
+  color: #1f2937;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%231f2937'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.dropdown:hover {
+  border-color: rgba(59, 130, 246, 0.5);
+  background: rgba(55, 65, 81, 0.8);
+}
+
+:root:not(.dark) .dropdown:hover {
+  border-color: rgba(59, 130, 246, 0.6);
+  background: rgba(249, 250, 251, 1);
+}
+
+.dropdown:focus {
+  outline: none;
+  ring: 2px;
+  ring-color: rgb(59, 130, 246);
+  border-color: rgb(59, 130, 246);
+}
+
+.dropdown option {
+  background: rgb(31, 41, 55);
+  color: white;
+  padding: 0.5rem;
+}
+
+:root:not(.dark) .dropdown option {
+  background: white;
+  color: #1f2937;
+}
+
+/* ============================================
+   DNA HELIX ANIMATIONS
+   ============================================ */
+
+/* Helix rotation - slow continuous spin */
+@keyframes spinHelix {
+  from {
+    transform: rotateY(0deg);
+  }
+
+  to {
+    transform: rotateY(360deg);
+  }
+}
+
+.animate-spin-helix {
+  animation: spinHelix 20s linear infinite;
+}
+
+.animate-spin-helix-fast {
+  animation: spinHelix 8s linear infinite;
+}
+
+/* Vertical scanning animation for username focus */
+@keyframes scanVertical {
+
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(-100%);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 0.5;
+  }
+
+  50% {
+    transform: translateX(-50%) translateY(100%);
+    opacity: 0.8;
+  }
+
+  90% {
+    opacity: 0.5;
+  }
+}
+
+.animate-scan-vertical {
+  animation: scanVertical 3s ease-in-out infinite;
+}
+
+/* Fast pulse for highlighted nodes */
+@keyframes pulseFast {
+
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.7;
+    transform: scale(1.1);
+  }
+}
+
+.animate-pulse-fast {
+  animation: pulseFast 1s ease-in-out infinite;
+}
+
+/* ============================================
+   GEOMETRIC CONSTELLATION ANIMATIONS
+   ============================================ */
+
+/* Constellation rotation - smooth 3D spin */
+@keyframes constellationRotate {
+  from {
+    transform: rotateY(0deg) rotateX(0deg);
+  }
+
+  to {
+    transform: rotateY(360deg) rotateX(20deg);
+  }
+}
+
+.animate-constellation-rotate {
+  animation: constellationRotate 30s linear infinite;
+}
+
+/* Node pulse - breathing glow effect */
+@keyframes nodePulse {
+
+  0%,
+  100% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+.animate-node-pulse {
+  animation: nodePulse 2s ease-in-out infinite;
+}
+
+/* Connection line pulse - energy flow */
+@keyframes connectionPulse {
+
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.animate-connection-pulse {
+  animation: connectionPulse 1.5s ease-in-out infinite;
+}
+
+/* Portal shimmer - keyhole edge effect */
+@keyframes portalShimmer {
+
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.4),
+      inset 0 0 20px rgba(59, 130, 246, 0.2);
+  }
+
+  50% {
+    box-shadow: 0 0 40px rgba(59, 130, 246, 0.8),
+      inset 0 0 30px rgba(59, 130, 246, 0.4);
+  }
+}
+
+.animate-portal-shimmer {
+  animation: portalShimmer 2s ease-in-out infinite;
+}
+
+/* Constellation float - gentle Y-axis movement */
+@keyframes constellationFloat {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+.animate-constellation-float {
+  animation: constellationFloat 4s ease-in-out infinite;
+}
+
+/* ============================================
+   ANIMATED GRADIENT ORBS
+   ============================================ */
+
+/* Float animation for orbs */
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+/* Reverse float */
+@keyframes float-reverse {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(20px);
+  }
+}
+
+/* Particle burst for auth state */
+@keyframes particle-burst {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(var(--rotation, 0deg)) translateY(-80px) scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(var(--rotation, 0deg)) translateY(-180px) scale(0.3);
+  }
+}
+
+/* Shake animation for error */
+@keyframes shake {
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-5px);
+  }
+
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(5px);
+  }
+}
+
+.animate-shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+/* Fade pulse */
+@keyframes fade-pulse {
+
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Perspective utility */
+.perspective-1000 {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+/* ============================================
+   ROBOT GUARDIAN ANIMATIONS
+   ============================================ */
+
+/* Checkmark drawing animation */
+@keyframes draw-check {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
