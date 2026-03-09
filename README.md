@@ -1,4 +1,4 @@
-# link - https://frontend-iare-pat.vercel.app/
+link - https://frontend-iare-pat.vercel.app/
 # 🎓 Placement Management System
 
 A comprehensive, full-stack Placement Management System designed to handle student data, track placement drives (companies), visualize analytics, and provide an AI-powered conversational interface for querying placement statistics.
@@ -141,4 +141,5 @@ python app.py
 
 ---
 *Built with ❤️ for modern placement management and student success tracking.*
+
 
